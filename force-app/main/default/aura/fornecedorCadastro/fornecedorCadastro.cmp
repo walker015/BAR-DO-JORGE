@@ -1,0 +1,45 @@
+<aura:component controller="FornecedoresController">
+  <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+  <aura:attribute name="fornecedores" type="Fornecedor__c[]"/>
+  <aura:attribute name="newFornecedor" type="Fornecedor__c" default="{ 'sobjectType': 'Fornecedor__c',
+                                                                        'Nome__c': '',
+                                                                        'Telefone__c': 0},
+                                                                        'CNPJ__c': 0,
+                                                                        'Email__c': '' "/>
+    <!-- CRIAR FORNECEDOR -->
+  <div aria-labelledby="newfornecedorform" class="slds-align_absolute-center">
+      <!-- BOXED AREA -->
+      <fieldset class="slds-box slds-theme_default slds-container_small">
+      <legend id="newfornecedorform" class="slds-text-heading_small
+        slds-p-vertical_medium">
+        Add Fornecedor
+      </legend>
+      <!-- CRIAR NOVO FORNECEDOR FORM -->
+      <form class="slds-form_stacked">
+          <lightning:input aura:id="fornecedorform" label="Nome"
+                            name="fornecedorname"
+                            value="{!v.newFornecedor.Nome__c}"/>
+          <lightning:input aura:id="fornecedorform" label="CNPJ"
+                            name="fornecedorcnpj"
+                            type="number"
+                            value="{!v.newFornecedor.CNPJ__c}"/>
+          <lightning:input type="tel" label="Telefone"
+                            aura:id="fornecedorform"
+                            name="fornecedortelefone"
+                            value="{!v.newFornecedor.Telefone__c}"/>
+          <lightning:input aura:id="fornecedorform" label="Email"
+                            type="email"
+                            name="fornecedoremail"
+                            value="{!v.newFornecedor.Email__c}"/>
+          <lightning:button label="Create Fornecedor"
+                            class="slds-m-top_medium"
+                            variant="brand"
+                            onclick="{!c.clickCreate}"/>
+      </form>
+      <!-- / CREATE NEW FORNECEDOR FORM -->
+    </fieldset>
+    <!-- / BOXED AREA -->
+  </div>
+  <!-- / CREATE NEW FORNCEDOR -->
+  <c:fornecedorList fornecedores="{!v.fornecedores}"/>
+</aura:component>

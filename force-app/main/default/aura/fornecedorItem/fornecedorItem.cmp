@@ -1,0 +1,17 @@
+<aura:component>
+    <aura:attribute name="fornecedor" type="Fornecedor__c"/>
+    <lightning:card title="{!v.fornecedor.Nome__c}" iconName="standard:scan_card">
+        <p class="slds-p-horizontal_small">
+            Código do Fornecedor: {!v.fornecedor.Name}
+        </p>
+        <p class="slds-p-horizontal_small">
+            CNPJ: {!v.fornecedor.CNPJ__c}
+        </p>
+        <p class="slds-p-horizontal_small">
+           Telefone: <lightning:formattedPhone value="{!v.fornecedor.Telefone__c}"></lightning:formattedPhone>
+        </p>
+        <p class="slds-p-horizontal_small">
+            Email: {!v.fornecedor.Email__c}
+        </p>
+    </lightning:card>
+</aura:component>

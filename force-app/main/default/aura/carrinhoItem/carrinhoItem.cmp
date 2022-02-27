@@ -1,0 +1,24 @@
+<aura:component>
+    <aura:attribute name="produtos" type="Product2"/>
+    <lightning:layout class="slds-page-header slds-page-header_object-home">
+        <lightning:layoutItem size="12">
+            <div>
+                <h2>{!v.produtos.Name}</h2>
+            </div>
+        </lightning:layoutItem>
+        <lightning:layout>
+            <lightning:layoutItem>
+                <div>
+                    <b>Código do Produto: </b><p>{!v.produtos.ProductCode}</p>
+                </div>
+                <div>
+                    <b>Decription</b>
+                    <div><p>{!v.produtos.Description}</p></div>
+                </div>
+                <div>
+                    <p><lightning:formattedNumber value="{!v.produtos.Valor_de_Venda__c}" style="currency" currencyCode="BRL"/></p>
+                </div>
+            </lightning:layoutItem>
+        </lightning:layout>
+    </lightning:layout>
+</aura:component>

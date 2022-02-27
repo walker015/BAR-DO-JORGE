@@ -1,0 +1,103 @@
+<aura:component controller="VendasController" implements="forceCommunity:searchInterface" access="global">
+  <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+  <aura:handler name="init" action="{!c.inicio}" value="{!this}"/>
+  <aura:attribute name="truthy" type="Boolean"/>
+  <aura:attribute name="listaparaocarrinho" type="List"/>
+  <aura:attribute name="carrinhoprodutos" type="List"/>
+  <aura:attribute name="vendas" type="Venda__c[]"/>
+  <aura:attribute name="produto" type="List" />
+  <aura:attribute name="valorproduto" type="String"/>
+  <aura:attribute name="valortotal" type="Double"/>
+  <aura:attribute name="issearching" type="List" default="{'Produto': '',
+                                                          'Quantidade': 0}"/>
+  <aura:attribute name="newVenda" type="Venda__c" default="{ 'sobjectType': 'Venda__c',
+                                                            'Cliente__c': '',
+                                                            'Telefone_do_Cliente__c': 00000000000,
+                                                            'Produtos__c': '',
+                                                            'Valor_total__c': '',
+                                                            'Quantidade_Venda__c': 0}" />
+  <!-- SECTION VENDA -->
+  <div class="slds-grid">
+    <!-- SECTIO CARRINHO -->
+    <div aria-labelledby="newcarrinhoform" class="slds-align_absolute-center">
+      <!-- BOXED AREA -->
+      <fieldset class="slds-box slds-theme_default slds-container_small">
+        <legend id="newcarrinhoform" class="slds-text-heading_small
+          slds-p-vertical_medium">
+          Carrinho
+        </legend>
+        <div>
+          <lightning:combobox aura:id="carrinhovenda" name="nomedoproduto" label="Produto"
+                  placeholder="Selecione um produto"
+                  value="{!v.issearching.Produto}"
+                  onchange="{!c.handleOptionSelected}"
+                  options="{!v.produto}"/>
+          <lightning:input aura:id="carrinhovenda" name="carrinhoquantidade"
+                            label="Quantidade"
+                            type="number"
+                            value="{!v.issearching.Quantidade}"/>
+          <lightning:buttonIcon onclick="{! c.clickProduto }"
+                                iconName="utility:add"
+                                size="small"
+                                alternativeText="Adicionar"
+                                title="Adicionar"/>
+        </div>
+        <div class="slds-grid">
+          <lightning:card class="slds-col slds-p-top_medium" title="Produto">
+            <aura:iteration items="{!v.issearching}" var="carrinho">
+              <p>{!carrinho.Produto}</p>
+            </aura:iteration>
+          </lightning:card>
+          <lightning:card class="slds-col" title="Valor">
+            <p><lightning:formattedNumber value="{!v.valorproduto}" style="currency" currencyCode="BRL"/></p>
+          </lightning:card>
+        </div>
+      </fieldset>
+    </div>
+    <!-- Lista Carrinho -->
+    <div>
+      <aura:if isTrue="{!v.truthy}">
+        <c:carrinhoList produtos="carrinhoprodutos"/>
+        <aura:set attribute="else">
+          <h1>ESCOLHA UM PRODUTO</h1>
+        </aura:set>
+      </aura:if>
+    </div>
+    <!-- /Lista Carrinho -->
+      <!-- CRIAR VENDA -->
+    <div aria-labelledby="newvendaform" class="slds-align_absolute-center">
+        <!-- BOXED AREA -->
+        <fieldset class="slds-box slds-theme_default slds-container_small">
+        <legend id="newvendaform" class="slds-text-heading_small
+          slds-p-vertical_medium">
+          Add Venda
+        </legend>
+        <!-- CRIAR NOVO VENDA FORM -->
+        <form class="slds-form_stacked">
+            <lightning:input aura:id="vendaform" label="Cliente"
+                              name="vendacliente"
+                              value="{!v.newVenda.Cliente__c}"/>
+            <lightning:input type="tel" label="Telefone do Cliente"
+                              aura:id="vendaform"
+                              name="vendatelefonedocliente"
+                              value="{!v.newVenda.Telefone_do_Cliente__c}"/>
+            <lightning:input type="number" label="Valor total"
+                              aura:id="vendaform"
+                              name="vendavalortotal"
+                              formatter="currency"
+                              disabled="true"
+                              step="0.01"
+                              value="{!v.valortotal}"/>
+            <lightning:button label="Create Venda"
+                              class="slds-m-top_medium"
+                              variant="brand"
+                              onclick="{!c.clickCreate}"/>
+        </form>
+        <!-- / CREATE NEW VENDA FORM -->
+      </fieldset>
+      <!-- / BOXED AREA -->
+    </div>
+  </div>
+  <!-- / CREATE NEW VENDA -->
+  <c:vendaList vendas="{!v.vendas}"/>
+</aura:component>

@@ -1,0 +1,10 @@
+<aura:component >
+    <lightning:layout class="slds-page-header slds-page-header_object-home">
+        <div class="page-section page-header">
+            <h1 class="slds-text-heading_medium">
+                FORNECEDOR
+            </h1>
+        </div>
+    </lightning:layout>
+    <c:fornecedorCadastro/>
+</aura:component>

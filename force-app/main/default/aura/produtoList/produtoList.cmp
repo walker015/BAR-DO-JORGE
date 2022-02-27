@@ -1,0 +1,11 @@
+<aura:component controller="ProdutosController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    <aura:attribute name="produtos" type="Product2[]"/>
+    <lightning:card title="Produtos">
+        <p class="slds-p-horizontal_small">
+            <aura:iteration items="{!v.produtos}" var="produto" >
+                <c:produtoItem produto="{!produto}"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,58 @@
+<aura:component controller="ProdutosController">
+  <aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+  <aura:attribute name="produtos" type="Product2[]"/>
+  <aura:attribute name="newProduto" type="Product2" default="{ 'sobjectType': 'Product2',
+                                                                        'Name': '',
+                                                                        'Description': '',
+                                                                        'ProductCode': '',
+                                                                        'Quantidade__c': 0,
+                                                                        'Preco_de_Venda__c': 0,
+                                                                        'Preco_do_Fornecedor__c': 0}" />
+    <!-- CRIAR PRODUTO -->
+  <div aria-labelledby="newprodutoform" class="slds-align_absolute-center">
+    <!-- BOXED AREA -->
+    <fieldset class="slds-box slds-theme_default slds-container_small">
+    <legend id="newprodutoform" class="slds-text-heading_small
+      slds-p-vertical_medium">
+      Add Produto
+    </legend>
+    <!-- CRIAR NOVO PRODUTO FORM -->
+    <form class="slds-form_stacked">
+        <lightning:input aura:id="produtoform" label="Nome"
+                          name="produtoname"
+                          value="{!v.newProduto.Name}"/>
+        <lightning:input aura:id="produtoform" label="Código do Produto"
+                          name="produtocodigodoproduto"
+                          value="{!v.newProduto.ProductCode}"/>
+        <lightning:input aura:id="produtoform" type="number"
+                          label="Quantidade"
+                          name="produtoquantidade"
+                          value="{!v.newProduto.Quantidade__c}"/>
+        <lightning:input label="Descrição"
+                          aura:id="produtoform"
+                          name="produtodescrição"
+                          value="{!v.newProduto.Description}"/>
+        <lightning:input aura:id="produtofrom" type="number"
+                          name="produtoprecodevenda"
+                          label="Preço de Venda"
+                          formatter="currency"
+                          step="0.01"
+                          value="{!v.newProduto.Preco_de_Venda__c}"/>
+        <lightning:input aura:id="produtofrom" type="number"
+                          name="produtoprecodofornecedor"
+                          label="Preço do Fornecedor"
+                          formatter="currency"
+                          step="0.01"
+                          value="{!v.newProduto.Preco_do_Fornecedor__c}"/>
+        <lightning:button label="Create Produto"
+                          class="slds-m-top_medium"
+                          variant="brand"
+                          onclick="{!c.clickCreate}"/>
+    </form>
+    <!-- / CREATE NEW PRODUTO FORM -->
+  </fieldset>
+  <!-- / BOXED AREA -->
+  </div>
+  <!-- / CREATE NEW FORNCEDOR -->
+  <c:produtoList produtos="{!v.produtos}"/>
+</aura:component>

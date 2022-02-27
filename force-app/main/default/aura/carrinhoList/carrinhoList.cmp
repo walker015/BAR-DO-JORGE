@@ -1,0 +1,10 @@
+<aura:component>
+    <aura:attribute name="produtos" type="List[]"/>
+    <lightning:card>
+        <p>
+            <aura:iteration items="{!v.produtos}" var="card">
+                <c:carrinhoItem produtos="{!card}"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+</aura:component>

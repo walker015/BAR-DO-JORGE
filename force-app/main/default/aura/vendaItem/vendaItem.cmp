@@ -1,0 +1,14 @@
+<aura:component>
+    <aura:attribute name="venda" type="Venda__c"/>
+    <lightning:card title="{!v.venda.Cliente__c}" iconName="standard:scan_card">
+        <p class="slds-p-horizontal_small">
+            Código do Venda: {!v.venda.Name}
+        </p>
+        <p class="slds-p-horizontal_small">
+           Telefone: <lightning:formattedPhone value="{!v.venda.Telefone_do_Cliente__c}"></lightning:formattedPhone>
+        </p>
+        <p class="slds-p-horizontal_small">
+            Valor Total: <lightning:formattedNumber value="{!v.venda.Valor_total__c}" style="currency" currencyCode="BRL"></lightning:formattedNumber>
+        </p>
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,10 @@
+<aura:component>
+  <lightning:layout
+    class="slds-page-header slds-page-header_object-home slds-align_absolute-center">
+    <lightning:layoutItem padding="horizontal-medium">
+      <div class="page-section page-header">
+        <h1 class="slds-text-heading_medium">BAR DO JORGE</h1>
+      </div>
+    </lightning:layoutItem>
+  </lightning:layout>
+</aura:component>

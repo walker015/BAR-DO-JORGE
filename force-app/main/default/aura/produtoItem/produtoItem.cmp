@@ -1,0 +1,22 @@
+<aura:component>
+    <aura:attribute name="produto" type="Product2"/>
+    <lightning:card class="slds-card__header slds-grid slds-wrap" title="{!v.produto.Name}" iconName="standard:scan_card">
+        <div class="slds-col">
+            <p class="slds-card__body slds-p-horizontal_small ">
+                Código do Produto: <lightning:formattedText class="slds-form-element__static slds-grow word-break-ie11 is-read-only" value="{!v.produto.ProductCode}"></lightning:formattedText>
+            </p>
+            <p class="slds-card__body slds-p-horizontal_small">
+                Quantidade: <lightning:formattedNumber class="slds-form-element__static slds-grow word-break-ie11 is-read-only" value="{!v.produto.Quantidade__c}"/>
+            </p>
+            <p class="slds-card__body slds-p-horizontal_small">
+               Descrição: <lightning:formattedText class="slds-form-element__static slds-grow word-break-ie11 is-read-only" value="{!v.produto.Description}"></lightning:formattedText>
+            </p>
+            <p class="slds-card__body slds-p-horizontal_small">
+                Preço de Venda: <lightning:formattedNumber class="slds-form-element__static slds-grow word-break-ie11 is-read-only" style="currency" currencyCode="BRL" value="{!v.produto.Preco_de_Venda__c}"/>
+            </p>
+            <p class="slds-card__body slds-p-horizontal_small">
+               Preço do Fornecedor: <lightning:formattedNumber class="slds-form-element__static slds-grow word-break-ie11 is-read-only" style="currency" currencyCode="BRL" value="{!v.produto.Preco_do_Fornecedor__c}"/>
+            </p>
+        </div>
+    </lightning:card>
+</aura:component>
